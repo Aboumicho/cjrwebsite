@@ -1,12 +1,15 @@
 import React,{ useLayoutEffect, useState, useEffect } from 'react';
 import {usernameChanged, passwordChanged, loginUser, createUser} from '../actions/Authentication'
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 
 const CreateAccount = (props) =>{
      console.log("PROPS >>>",props)
+     let [createAccountSuccess, setAccountSuccess] = useState(false)
     function handleClick(event){
         console.log("props > HandleCLick",props)
         props.createUser({email: props.username, password: props.password })
+        props.error ? setAccountSuccess(false) : setAccountSuccess(true)
     }
 
     function usernamechange(event){
@@ -18,10 +21,12 @@ const CreateAccount = (props) =>{
     }
 
     return(
+       
         <section id="createAccount">
         <div class="inner">
+        
             <h1>Create Account</h1>
-            
+                <div><p>{props.error}</p></div>
                 <div class="field half first">
                     <label for="name">Username</label>
                     <input type="text" onChange={usernamechange} name="username" id="username" />
@@ -31,9 +36,8 @@ const CreateAccount = (props) =>{
                     <input type="password" onChange={passwordchange} name="password" id="password" />
                 </div>
                 <div id="createAccountButton" className="field half first"><button onClick={handleClick} >Create Account</button></div>
-            
-        
         </div></section>
+        
     )
 }
 

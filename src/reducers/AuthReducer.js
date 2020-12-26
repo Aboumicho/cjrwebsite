@@ -3,12 +3,13 @@ const INITIAL_STATE = {
     password: '', 
     isAdmin: false,
     user: null,
-    error: '',
+    error: null,
     loading: false,
     isLoggedIn: false
 };
 
 export default (state=INITIAL_STATE, action) => {
+        console.log("ACTION >> ", action)
     switch(action.type){
         case 'USERNAME_CHANGED':
             return {
@@ -21,24 +22,38 @@ export default (state=INITIAL_STATE, action) => {
                 password: action.payload
             };
         case 'LOGIN_USER':
+            console.log("PAYLOAD >>> LOGIN_USER", action)
             return{
                 ...state,
                 loading: true,
                 password: '',
-                error: '',
-                isLoggedIn: true
+                error: null,
             };
         case 'GET_USER':
             return{
                 ...state
             };
-        case 'LOGIN_FAILED':
+        case "REGISTER_FAILURE":
             return{
                 ...state,
-                error: 'Authentication Failed',
-                password: '',
-                loading: false
+                error: action.payload.message
             }
+
+        case "LOGIN_USER_FAIL":
+            return{
+                ...state,
+                error: action.payload.err,
+                isLoggedIn: false
+            }
+        case 'LOGIN_USER_SUCCESS':
+            console.log("LOGIN_USER_SUCCESS > ACTION" ,action)
+            return{
+                ...state,
+                isLoggedIn: true,
+                username: action.payload.email,
+                error: null
+
+            };
         default: return state
     }
 }

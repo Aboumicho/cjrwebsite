@@ -17,15 +17,13 @@ export const usernameChanged = (username) => {
   
   export const loginUser = ({ username, password}) => {
     return (dispatch) => {
-        //set loading spinner along with the firebase call
-        dispatch({ type: 'LOGIN_USER' });
 
         firebase.auth().signInWithEmailAndPassword(username, password)
         .then((user) => {
             loginUserSuccess(dispatch, user);
          })
-         .catch(() => {
-            loginUserFail(dispatch);
+         .catch((err) => {
+            loginUserFail(dispatch, err);
          });
     };
 };
@@ -50,10 +48,11 @@ const loginUserSuccess = (dispatch, user, isAdmin) => {
 
 };
 
-const loginUserFail = (dispatch) => {
+const loginUserFail = (dispatch, err) => {
     alert('Error! Wrong Credentials, Please Try Again!');
     dispatch({
-        type: 'LOGIN_USER_FAIL'
+        type: 'LOGIN_USER_FAIL',
+        payload: err
     });
 };
 
@@ -70,7 +69,7 @@ export const createUser = ({email, password}) => {
       })
       .catch((err) => {
         console.log(err)
-        dispatch({ type: "REGISTER_FAILURE" })
+        dispatch({ type: "REGISTER_FAILURE", payload: err })
       });
     
   };

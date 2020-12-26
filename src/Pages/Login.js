@@ -9,7 +9,6 @@ let [loginsuccess, setLoginSuccess] = useState(false)
 function handleClick(e){
     console.log("props > handleClick", props)
     props.loginUser({username: props.username, password: props.password})
-    setLoginSuccess(true)
 }
 
 function usernamechange(event){
@@ -19,9 +18,9 @@ function usernamechange(event){
 function passwordchange(event){
     props.passwordChanged(event.target.value)
 }
-
+console.log("RETURN >> isLoggedIn", props.isLoggedIn)
 return(
-    loginsuccess ? <Redirect to="/"/> :
+    props.isLoggedIn ? <Redirect to="/"/> :
     <section id="login">
 <div class="inner">
     <h1>Login</h1>
@@ -37,6 +36,7 @@ return(
         <div className="field half first"><a href="/CreateAccount" class="button alt">Create Account</a></div>
         <div className="field half second"><button onClick={(e)=>{handleClick(e)}} >Login</button> </div>
         </div>
+        <div><p>{props.error ? props.error : null}</p></div>
 
 </div></section>)
 
@@ -50,7 +50,8 @@ const mapStateToProps = (state) => {
       password: state.authReducers.password,
       isAdmin: state.authReducers.isAdmin,
       error: state.authReducers.error,
-      loading: state.authReducers.loading
+      loading: state.authReducers.loading,
+      isLoggedIn: state.authReducers.isLoggedIn
     };
   };
   
