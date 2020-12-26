@@ -37,6 +37,10 @@ const loginUserSuccess = (dispatch, user, isAdmin) => {
         payload: user
     });
 
+    console.log("user >>>>",user.user.email)
+    console.log("ADMIN EMSAIL" , process.env.ADMIN_EMAIL)
+    // if(process.env.ADMIN_EMAIL)
+
     if (isAdmin) {
         console.log('User is admin');
     }
@@ -51,4 +55,23 @@ const loginUserFail = (dispatch) => {
     dispatch({
         type: 'LOGIN_USER_FAIL'
     });
+};
+
+export const createUser = ({email, password}) => {
+
+  return (dispatch) => {
+    dispatch({ type: "REGISTER_USER_REQUEST" });
+
+    let authFailure = false;
+
+      firebase.auth().createUserWithEmailAndPassword(email, password)
+      .then(() => {
+        dispatch({ type: "REGISTER_SUCCESS" })
+      })
+      .catch((err) => {
+        console.log(err)
+        dispatch({ type: "REGISTER_FAILURE" })
+      });
+    
+  };
 };

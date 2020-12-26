@@ -3993,3 +3993,17 @@
 			}
 
 		}
+
+		#login {
+			margin-top: 3rem;
+			margin-bottom: 3rem;	
+		}
+
+		#createAccount{
+			margin-top: 3rem;
+			margin-bottom: 3rem;	
+		}
+		
+		#createAccountButton{
+			margin-top: 3rem;
+		}

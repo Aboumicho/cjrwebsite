@@ -1,5 +1,5 @@
-import { connect } from 'react-redux';
 import React from 'react';
+import Footer from '../PageComponents/Footer'
 const Home = (props) => {
 
     let sections = [
@@ -49,6 +49,7 @@ const Home = (props) => {
                 </article>
             </div>
             </section>),
+            <Footer/>
             // (  <section id="three">
             // <div class="inner">
             //     <article>

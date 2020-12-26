@@ -1,5 +1,6 @@
-import { connect } from 'react-redux';
 import React,{ useLayoutEffect, useState, useEffect } from 'react';
+import {usernameChanged, passwordChanged, loginUser} from '../actions/Authentication'
+import { connect } from 'react-redux';
 import useWindowSize from '../components/windowsize'
 import HamburgerMenu from 'react-hamburger-menu'
 import x_icon from '../svg/x_icon'
@@ -20,10 +21,10 @@ const Header = (props) => {
                 <a href="index.html" class="logo">CJR Construction</a>
                 <nav id="nav" >
                     
-                    <a href="index.html" >Home</a>
+                    <a href="/" >Home</a>
                     <a href="generic.html" >Generic</a>
                     <a href="elements.html" >Elements</a>
-                    <a href="login.html" >Login</a>
+                    {props.isLoggedIn ? <a>{props.username} </a>: <a href="/login" >Login</a>}
                 </nav>
             </div>
         </header>)
@@ -36,7 +37,7 @@ const Header = (props) => {
         <a href="index.html" >Home</a>
         <a href="generic.html" >Generic</a>
         <a href="elements.html" >Elements</a>
-        <a href="login.html" >Login</a>
+        <a href="login" >Login</a>
     </nav>) : null
         console.log("open: ", open)
         HeaderComponent = (
@@ -67,4 +68,15 @@ const Header = (props) => {
         HeaderComponent)
 }
 
-export default Header
+const mapStateToProps = (state) => {
+    console.log(state.authReducers)
+    return {
+      username: state.authReducers.username,
+      isAdmin: state.authReducers.isAdmin,
+      error: state.authReducers.error,
+      loading: state.authReducers.loading,
+      isLoggedIn: state.authReducers.isLoggedIn
+    };
+  };
+
+export default connect(mapStateToProps) (Header)
