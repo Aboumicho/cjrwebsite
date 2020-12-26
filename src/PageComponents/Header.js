@@ -4,12 +4,24 @@ import { connect } from 'react-redux';
 import useWindowSize from '../components/windowsize'
 import HamburgerMenu from 'react-hamburger-menu'
 import x_icon from '../svg/x_icon'
+import Firebase from '../config/Firebase'
 
 const Header = (props) => {
     const width = useWindowSize()[0]
     const height = useWindowSize()[1]
     let [toggle, setToggle] = useState(false)
     let [open, setOpen] = useState(false)
+
+    let [user, setUser] = useState(null)
+
+    Firebase.auth().onAuthStateChanged((user) => {
+        if (user) {
+            setUser(user)
+        } 
+    });
+
+    console.log("USER HEADER", user)
+    
 
     function handleClick(){
         setOpen(!open)
@@ -24,7 +36,7 @@ const Header = (props) => {
                     <a href="/" >Home</a>
                     <a href="generic.html" >Generic</a>
                     <a href="elements.html" >Elements</a>
-                    {props.isLoggedIn ? <a>{props.username} </a>: <a href="/login" >Login</a>}
+                    {user ? <div><a>{user.email} </a> <a>Logout</a></div>: <a href="/login" >Login</a>}
                 </nav>
             </div>
         </header>)
@@ -37,7 +49,7 @@ const Header = (props) => {
         <a href="index.html" >Home</a>
         <a href="generic.html" >Generic</a>
         <a href="elements.html" >Elements</a>
-        <a href="login" >Login</a>
+        {user ? <div><a>{user.email} </a> <a>Logout</a></div>: <a href="/login" >Login</a>}
     </nav>) : null
         console.log("open: ", open)
         HeaderComponent = (

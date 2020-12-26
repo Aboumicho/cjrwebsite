@@ -1,7 +1,9 @@
-import React from 'react';
+import React,{ useLayoutEffect, useState, useEffect } from 'react';
 import Footer from '../PageComponents/Footer'
-const Home = (props) => {
+import Firebase from '../config/Firebase'
 
+const Home = (props) => {
+    
     let sections = [
                     (
                     <section id="banner">
@@ -93,6 +95,8 @@ const Home = (props) => {
 
 
     ]
+
+
 
     return sections
     
