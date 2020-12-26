@@ -49,11 +49,23 @@ export default (state=INITIAL_STATE, action) => {
             console.log("LOGIN_USER_SUCCESS > ACTION" ,action)
             return{
                 ...state,
-                isLoggedIn: true,
-                username: action.payload.email,
-                error: null
+                state:INITIAL_STATE
 
             };
+
+        case "LOGOUT_SUCCESS":
+            return{
+                ...state,
+                isLoggedIn: false,
+                username: "",
+                error: null,
+                user: null
+            }
+        case "LOGOUT_FAILURE":
+            return{
+                ...state,
+                error: action.payload.message
+            }
         default: return state
     }
 }

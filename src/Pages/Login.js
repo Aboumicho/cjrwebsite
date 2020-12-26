@@ -9,6 +9,7 @@ let [loginsuccess, setLoginSuccess] = useState(false)
 function handleClick(e){
     console.log("props > handleClick", props)
     props.loginUser({username: props.username, password: props.password})
+    setLoginSuccess(true)
 }
 
 function usernamechange(event){
@@ -20,7 +21,7 @@ function passwordchange(event){
 }
 console.log("RETURN >> isLoggedIn", props.isLoggedIn)
 return(
-    props.isLoggedIn ? <Redirect to="/"/> :
+    loginsuccess ? <Redirect to="/"/> :
     <section id="login">
 <div class="inner">
     <h1>Login</h1>

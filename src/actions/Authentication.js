@@ -74,3 +74,16 @@ export const createUser = ({email, password}) => {
     
   };
 };
+
+export const logoutUser = () => {
+
+  return (dispatch) =>{
+    
+    firebase.auth().signOut().then(()=>{
+      dispatch({type: "LOGOUT_SUCCESS"})
+    }).catch((err) => {
+      dispatch({type: "LOGOUT_FAILURE", payload: err })
+    })
+  }
+
+}

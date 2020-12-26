@@ -5,6 +5,8 @@ import useWindowSize from '../components/windowsize'
 import HamburgerMenu from 'react-hamburger-menu'
 import x_icon from '../svg/x_icon'
 import Firebase from '../config/Firebase'
+import {logoutUser} from '../actions/Authentication';
+
 
 const Header = (props) => {
     const width = useWindowSize()[0]
@@ -19,6 +21,11 @@ const Header = (props) => {
             setUser(user)
         } 
     });
+
+    function logout() { 
+            props.logoutUser()
+            setUser(null)
+    }
 
     console.log("USER HEADER", user)
     
@@ -36,7 +43,7 @@ const Header = (props) => {
                     <a href="/" >Home</a>
                     <a href="generic.html" >Generic</a>
                     <a href="elements.html" >Elements</a>
-                    {user ? <div><a>{user.email} </a> <a>Logout</a></div>: <a href="/login" >Login</a>}
+                    {user  ? <div><a>{user.email} </a> <button onClick={logout}>Logout</button></div>: <a href="/login" >Login</a>}
                 </nav>
             </div>
         </header>)
@@ -49,7 +56,7 @@ const Header = (props) => {
         <a href="index.html" >Home</a>
         <a href="generic.html" >Generic</a>
         <a href="elements.html" >Elements</a>
-        {user ? <div><a>{user.email} </a> <a>Logout</a></div>: <a href="/login" >Login</a>}
+        {user  ? <div><a>{user.email} </a> <button onClick={logout}>Logout</button></div>: <a href="/login" >Login</a>}
     </nav>) : null
         console.log("open: ", open)
         HeaderComponent = (
@@ -77,6 +84,7 @@ const Header = (props) => {
     console.log("height of screen = ", height)
 
     return(
+        
         HeaderComponent)
 }
 
@@ -91,4 +99,4 @@ const mapStateToProps = (state) => {
     };
   };
 
-export default connect(mapStateToProps) (Header)
+export default connect(mapStateToProps, {logoutUser}) (Header)
