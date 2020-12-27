@@ -16,6 +16,7 @@ import Login from './Pages/Login'
 import CreateAccount from './Pages/CreateAccount';
 import {Gallerie} from './Pages/Gallerie'
 import Commentaires from './Pages/Commentaires'
+import { PrivacyPolicy } from './Pages/PrivacyPolicy';
 const store = createStore(reducers, {}, applyMiddleware(Thunk));
 
 
@@ -27,6 +28,7 @@ const routing = (
       <Header/>
       <Route exact path="/" component={Home} />
       <Route exact path="/index.html" component={Home} />
+      <Route exact path="/Privacy/Policy" component={PrivacyPolicy} />
       <Route exact path="/login" component={Login} />
       <Route exact path="/CreateAccount" component={CreateAccount} />
       <Route exact path="/commentaires" component={Commentaires} />
