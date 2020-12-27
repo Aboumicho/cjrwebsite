@@ -5,7 +5,7 @@ import useWindowSize from '../components/windowsize'
 import HamburgerMenu from 'react-hamburger-menu'
 import x_icon from '../svg/x_icon'
 import Firebase from '../config/Firebase'
-import {logoutUser} from '../actions/Authentication';
+import {logoutUser, setUser} from '../actions/Authentication';
 
 
 const Header = (props) => {
@@ -19,6 +19,7 @@ const Header = (props) => {
     Firebase.auth().onAuthStateChanged((user) => {
         if (user) {
             setUser(user)
+            props.setUser(user)
         } 
     });
 
@@ -28,7 +29,6 @@ const Header = (props) => {
     }
 
     console.log("USER HEADER", user)
-    
 
     function handleClick(){
         setOpen(!open)
@@ -36,12 +36,12 @@ const Header = (props) => {
 
     let HeaderComponent = (
         <header id="header">
-            <div class="inner"> 
-                <a href="index.html" class="logo">CJR Construction</a>
+            <div className="inner"> 
+                <a href="index.html" className="logo">CJR Construction</a>
                 <nav id="nav" >
                     
                     <a href="/" >Home</a>
-                    <a href="generic.html" >Generic</a>
+                    <a href="/commentaires" >Commentaires</a>
                     <a href="elements.html" >Elements</a>
                     {user  ? <div><a>{user.email} </a> <button onClick={logout}>Logout</button></div>: <a href="/login" >Login</a>}
                 </nav>
@@ -51,18 +51,18 @@ const Header = (props) => {
 
 
     if(width < 981){
-        let navBar = open ? (<nav id="navPanel" class="navPanelToggle visible">
+        let navBar = open ? (<nav id="navPanel" className="navPanelToggle visible">
         <button onClick={handleClick}> x </button>               
         <a href="index.html" >Home</a>
-        <a href="generic.html" >Generic</a>
+        <a href="/commentaires" >Commentaires</a>
         <a href="elements.html" >Elements</a>
         {user  ? <div><a>{user.email} </a> <button onClick={logout}>Logout</button></div>: <a href="/login" >Login</a>}
     </nav>) : null
         console.log("open: ", open)
         HeaderComponent = (
             <header id="header" > 
-                <div class="inner" id="innerMobile" display="flex" flex-flow="row" justify-content="flex-end" height="100%" padding-top="4%"> 
-                    <a href="index.html" class="logo">CJR Construction</a>
+                <div className="inner" id="innerMobile" display="flex" flex-flow="row" justify-content="flex-end" height="100%" padding-top="4%"> 
+                    <a href="index.html" className="logo">CJR Construction</a>
                     <div id="hamburgerMenu">
                     <HamburgerMenu
                         isOpen={open}
@@ -99,4 +99,4 @@ const mapStateToProps = (state) => {
     };
   };
 
-export default connect(mapStateToProps, {logoutUser}) (Header)
+export default connect(mapStateToProps, {logoutUser, setUser}) (Header)

@@ -22,24 +22,24 @@ function passwordchange(event){
 console.log("RETURN >> isLoggedIn", props.isLoggedIn)
 return(
     loginsuccess ? <Redirect to="/"/> :
-    <section id="login">
-<div class="inner">
+   
+<div className="inner">
     <h1>Login</h1>
-        <div class="field half first">
+        <div className="field half first">
             <label for="name">Username</label>
             <input type="text" onChange={usernamechange} name="username" id="username" />
         </div>
-        <div class="field half second">
+        <div className="field half second">
             <label for="name">Password</label>
             <input type="password" onChange={passwordchange} name="password" id="password" />
         </div>
         <div>
-        <div className="field half first"><a href="/CreateAccount" class="button alt">Create Account</a></div>
+        <div className="field half first"><a href="/CreateAccount" className="button alt">Create Account</a></div>
         <div className="field half second"><button onClick={(e)=>{handleClick(e)}} >Login</button> </div>
         </div>
         <div><p>{props.error ? props.error : null}</p></div>
 
-</div></section>)
+</div>)
 
 
 }

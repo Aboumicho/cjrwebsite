@@ -10,40 +10,40 @@ const Home = (props) => {
                     <div class="inner">          
                     </div>
                     <ul class="actions" id="headerButtonsUL">
-                            <li><a href="#services" class="button alt">Nos services</a></li>
-                            <li><a href="#one" class="button alt">Contactez nous</a></li>
+                            <li><a href="#services" className="button alt">Nos services</a></li>
+                            <li><a href="#one" className="button alt">Contactez nous</a></li>
                         </ul> 
                 </section>),
                 (<section id="one">
-                <div class="inner">
+                <div className="inner">
                     <header>
                         <h2>A propos</h2>
                     </header>
                     <p>Description des services offerts par nous. </p>
-                    <ul class="actions">
-                        <li><a href="#services" class="button alt">Learn More</a></li>
+                    <ul className="actions">
+                        <li><a href="#services" className="button alt">Learn More</a></li>
                     </ul>
                 </div>
             </section>),
             ( <section id="services">
-            <div class="inner">
+            <div className="inner">
                 <article>
-                    <div class="content">
+                    <div className="content">
                         <header>
                             <h3>Construction exterieur</h3>
                         </header>
-                        <div class="image fit">
+                        <div className="image fit">
                             <img src="images/pic01.jpg" alt="" />
                         </div>
                         <p>Cela pourrait etre le premier example d'un type de construction!</p>
                     </div>
                 </article>
-                <article class="alt">
-                    <div class="content">
+                <article className="alt">
+                    <div className="content">
                         <header>
                             <h3>Revetement interieur</h3>
                         </header>
-                        <div class="image fit">
+                        <div className="image fit">
                             <img src="images/pic02.jpg" alt="" />
                         </div>
                         <p>Ceci est un deuxieme example de service offert par CJR!</p>

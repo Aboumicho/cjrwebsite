@@ -23,15 +23,15 @@ const CreateAccount = (props) =>{
     return(
        
         <section id="createAccount">
-        <div class="inner">
+        <div className="inner">
         
             <h1>Create Account</h1>
                 <div><p>{props.error}</p></div>
-                <div class="field half first">
+                <div className="field half first">
                     <label for="name">Username</label>
                     <input type="text" onChange={usernamechange} name="username" id="username" />
                 </div>
-                <div class="field half second">
+                <div className="field half second">
                     <label for="name">Password</label>
                     <input type="password" onChange={passwordchange} name="password" id="password" />
                 </div>

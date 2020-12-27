@@ -48,6 +48,12 @@ const loginUserSuccess = (dispatch, user, isAdmin) => {
 
 };
 
+export const setUser = (user) =>{
+  return(dispatch) => {
+    dispatch({type: "SET_USER", payload: user})
+  }
+}
+
 const loginUserFail = (dispatch, err) => {
     alert('Error! Wrong Credentials, Please Try Again!');
     dispatch({

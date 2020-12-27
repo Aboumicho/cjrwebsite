@@ -4,28 +4,28 @@ const Footer = (props) => {
 
     return(
         <section id="footer">
-                        <div class="inner">
+                        <div className="inner">
                             <header>
                                 <h2>Get in Touch</h2>
                             </header>
                             <form method="post" action="#">
-                                <div class="field half first">
+                                <div className="field half first">
                                     <label for="name">Name</label>
                                     <input type="text" name="name" id="name" />
                                 </div>
-                                <div class="field half">
+                                <div className="field half">
                                     <label for="email">Email</label>
                                     <input type="text" name="email" id="email" />
                                 </div>
-                                <div class="field">
+                                <div className="field">
                                     <label for="message">Message</label>
                                     <textarea name="message" id="message" rows="6"></textarea>
                                 </div>
-                                <ul class="actions">
+                                <ul className="actions">
                                     <li><input type="submit" value="Send Message" class="alt" /></li>
                                 </ul>
                             </form>
-                            <div class="copyright">
+                            <div className="copyright">
                                 &copy; Untitled Design: <a href="https://templated.co/">TEMPLATED</a>. Images <a href="https://unsplash.com/">Unsplash</a>
                             </div>
                         </div>

@@ -7,14 +7,17 @@ import Thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import reducers from './reducers'
-import { Route, Link, BrowserRouter as Router } from 'react-router-dom'
+import { Route, Link, Switch, BrowserRouter as Router, useParams } from 'react-router-dom'
 import Home from './Pages/Home';
 import Header from './PageComponents/Header'
 import Head from "./PageComponents/Head"
 import Footer from "./PageComponents/Footer"
 import Login from './Pages/Login'
 import CreateAccount from './Pages/CreateAccount';
+import Commentaires from './Pages/Commentaires'
 const store = createStore(reducers, {}, applyMiddleware(Thunk));
+
+
 
 const routing = (
   <Provider store={store}>
@@ -25,9 +28,20 @@ const routing = (
       <Route exact path="/index.html" component={Home} />
       <Route exact path="/login" component={Login} />
       <Route exact path="/CreateAccount" component={CreateAccount} />
+      <Route exact path="/commentaires" component={Commentaires} />
+      <Switch>
+        <Route path="/commentaires/:page" children={<Child />} />
+      </Switch>
     </Router>
   </Provider>
 )
+
+function Child(){
+  let {page} = useParams()
+  return(
+    <Commentaires page={page} />
+  )
+}
 
 ReactDOM.render(
   routing,

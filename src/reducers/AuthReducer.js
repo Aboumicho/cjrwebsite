@@ -33,6 +33,14 @@ export default (state=INITIAL_STATE, action) => {
             return{
                 ...state
             };
+        case 'SET_USER':
+            console.log("ACTION > SET_USER" , action)
+            return{
+                ...state, 
+                username: action.payload.email,
+                isLoggedIn: true
+
+            }
         case "REGISTER_FAILURE":
             return{
                 ...state,
@@ -49,7 +57,7 @@ export default (state=INITIAL_STATE, action) => {
             console.log("LOGIN_USER_SUCCESS > ACTION" ,action)
             return{
                 ...state,
-                state:INITIAL_STATE
+
 
             };
 
