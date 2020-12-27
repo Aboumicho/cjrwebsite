@@ -66,17 +66,40 @@ export const createUser = ({email, password}) => {
 
   return (dispatch) => {
     dispatch({ type: "REGISTER_USER_REQUEST" });
-
-    let authFailure = false;
-
+      
+      console.log("")
       firebase.auth().createUserWithEmailAndPassword(email, password)
-      .then(() => {
-        dispatch({ type: "REGISTER_SUCCESS" })
-      })
-      .catch((err) => {
-        console.log(err)
-        dispatch({ type: "REGISTER_FAILURE", payload: err })
-      });
+        .then(u=>{})
+        .catch(error => {
+          switch(error.code){
+            case 'auth/email-already-in-use':
+            dispatch({type: "REGISTER_FAILURE_EMAIL_IN_USE", payload:`Email ${email} déjà utilisé` })
+            
+          break;
+        case 'auth/invalid-email':
+          console.log(`Email address ${email} is invalid.`);
+          dispatch({type: "REGISTER_FAILURE_EMAIL_IN_USE", payload:`Email invalide: ${email}` })
+          break;
+        case 'auth/operation-not-allowed':
+          dispatch({type: "REGISTER_FAILURE_EMAIL_IN_USE", payload:`Une erreur est survenue durant la connexion. Veuillez réessayer.` })
+          console.log(`Error during sign up.`);
+          break;
+        case 'auth/weak-password':
+          dispatch({type: "REGISTER_FAILURE_EMAIL_IN_USE", payload:`Mot de passe invalide. Veuillez rajoutez des chiffres (1, 2, 3, ...) et charactères spéciaux (! , £, *, ... )` })
+          console.log('Password is not strong enough. Add additional characters including special characters and numbers.');
+          break;
+        default:
+          console.log(error.code);
+          break;
+          }
+        })
+      // .then(() => {
+      //   dispatch({ type: "REGISTER_SUCCESS" })
+      // })
+      // .catch((err) => {
+      //   console.log(err)
+      //   dispatch({ type: "REGISTER_FAILURE", payload: err })
+      // });
     
   };
 };

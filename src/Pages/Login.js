@@ -34,8 +34,8 @@ return(
             <input type="password" onChange={passwordchange} name="password" id="password" />
         </div>
         <div>
-        <div className="field half first"><a href="/CreateAccount" className="button alt">Create Account</a></div>
-        <div className="field half second"><button onClick={(e)=>{handleClick(e)}} >Login</button> </div>
+        <div style={{"marginTop" : "1rem"}} className="field half first"><a href="/CreateAccount" className="button alt">Create Account</a></div>
+        <div style={{"marginTop" : "1rem"}} className="field half second"><button onClick={(e)=>{handleClick(e)}} >Login</button> </div>
         </div>
         <div><p>{props.error ? props.error : null}</p></div>
 

@@ -26,7 +26,6 @@ const CreateAccount = (props) =>{
         <div className="inner">
         
             <h1>Create Account</h1>
-                <div><p>{props.error}</p></div>
                 <div className="field half first">
                     <label for="name">Username</label>
                     <input type="text" onChange={usernamechange} name="username" id="username" />
@@ -36,6 +35,7 @@ const CreateAccount = (props) =>{
                     <input type="password" onChange={passwordchange} name="password" id="password" />
                 </div>
                 <div id="createAccountButton" className="field half first"><button onClick={handleClick} >Create Account</button></div>
+                <div style={{"marginTop" : "2rem"}}><h6>{props.error}</h6></div>
         </div></section>
         
     )

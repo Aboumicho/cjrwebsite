@@ -19,7 +19,9 @@ Object.keys(comments).forEach((key) => {
     })
 })
 
-console.log("commentList >>>> ", commentList.length)
+const pages = commentList.length
+
+
 
 }
 return(

@@ -43,7 +43,7 @@ const Header = (props) => {
                     <a href="/" >Home</a>
                     <a href="/commentaires" >Commentaires</a>
                     <a href="elements.html" >Elements</a>
-                    {user  ? <div><a>{user.email} </a> <button onClick={logout}>Logout</button></div>: <a href="/login" >Login</a>}
+                    {user  ? <div><a>{user.email.split("@")[0]} </a> <button onClick={logout}>Logout</button></div>: <a href="/login" >Login</a>}
                 </nav>
             </div>
         </header>)
@@ -56,7 +56,7 @@ const Header = (props) => {
         <a href="index.html" >Home</a>
         <a href="/commentaires" >Commentaires</a>
         <a href="elements.html" >Elements</a>
-        {user  ? <div><a>{user.email} </a> <button onClick={logout}>Logout</button></div>: <a href="/login" >Login</a>}
+        {user  ? <div><a>{user.email.split("@")[0]} </a> <button onClick={logout}>Logout</button></div>: <a href="/login" >Login</a>}
     </nav>) : null
         console.log("open: ", open)
         HeaderComponent = (

@@ -43,6 +43,12 @@ export default (state=INITIAL_STATE, action) => {
                 ...state,
                 comments: action.payload
             }
+
+        case "REGISTER_FAILURE_EMAIL_IN_USE":
+            return{
+                ...state,
+                error: action.payload
+            }
         default:
             return{
                 ...state
