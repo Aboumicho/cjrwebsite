@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
@@ -14,6 +14,7 @@ import Head from "./PageComponents/Head"
 import Footer from "./PageComponents/Footer"
 import Login from './Pages/Login'
 import CreateAccount from './Pages/CreateAccount';
+import {Gallerie} from './Pages/Gallerie'
 import Commentaires from './Pages/Commentaires'
 const store = createStore(reducers, {}, applyMiddleware(Thunk));
 
@@ -29,9 +30,7 @@ const routing = (
       <Route exact path="/login" component={Login} />
       <Route exact path="/CreateAccount" component={CreateAccount} />
       <Route exact path="/commentaires" component={Commentaires} />
-      <Switch>
-        <Route path="/commentaires/:page" children={<Child />} />
-      </Switch>
+      <Route exact path="/gallerie" component={Gallerie} />
     </Router>
   </Provider>
 )
@@ -42,6 +41,7 @@ function Child(){
     <Commentaires page={page} />
   )
 }
+
 
 ReactDOM.render(
   routing,

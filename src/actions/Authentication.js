@@ -35,17 +35,6 @@ const loginUserSuccess = (dispatch, user, isAdmin) => {
         payload: user
     });
 
-    console.log("user >>>>",user.user.email)
-    console.log("ADMIN EMSAIL" , process.env.ADMIN_EMAIL)
-    // if(process.env.ADMIN_EMAIL)
-
-    if (isAdmin) {
-        console.log('User is admin');
-    }
-    else{
-        console.log("User is not Admin")
-    }
-
 };
 
 export const setUser = (user) =>{

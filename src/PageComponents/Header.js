@@ -42,7 +42,7 @@ const Header = (props) => {
                     
                     <a href="/" >Home</a>
                     <a href="/commentaires" >Commentaires</a>
-                    <a href="elements.html" >Elements</a>
+                    <a href="/gallerie" >Gallerie</a>
                     {user  ? <div><a>{user.email.split("@")[0]} </a> <button onClick={logout}>Logout</button></div>: <a href="/login" >Login</a>}
                 </nav>
             </div>
