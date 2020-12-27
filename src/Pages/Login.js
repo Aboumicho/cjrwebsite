@@ -2,6 +2,7 @@ import React,{ useLayoutEffect, useState, useEffect } from 'react';
 import {usernameChanged, passwordChanged, loginUser} from '../actions/Authentication'
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
+import Facebook from '../components/Facebook'
 const Login = (props) => {
 
 let [loginsuccess, setLoginSuccess] = useState(false)
@@ -34,8 +35,10 @@ return(
             <input type="password" onChange={passwordchange} name="password" id="password" />
         </div>
         <div>
-        <div style={{"marginTop" : "1rem"}} className="field half first"><a href="/CreateAccount" className="button alt">Create Account</a></div>
-        <div style={{"marginTop" : "1rem"}} className="field half second"><button onClick={(e)=>{handleClick(e)}} >Login</button> </div>
+        <div style={{"marginTop" : "1rem"}} className="field half first"><a href="/CreateAccount" className="button alt">Creer un compte</a></div>
+        <div style={{"marginTop" : "1rem"}} className="field half second"><button onClick={(e)=>{handleClick(e)}} >Connexion</button> </div>
+        <div style={{"marginTop" : "1rem"}}><h6>Ou</h6></div>
+        <div style={{"marginTop" : "1rem"}}><Facebook /></div>
         </div>
         <div><p>{props.error ? props.error : null}</p></div>
 
